@@ -1,0 +1,2026 @@
+ 
+           ##################################################
+           #      AMPT (A Multi-Phase Transport) model      #
+           #               Version 2.21 (StringMelting)     #
+           #                10/01/2008                      #
+           ##################################################
+            
+ # Read in NSEED in HIJING at run time (e.g. 20030819):
+ #   read in:       111111
+
+
+          **************************************************
+          *     |      |       _______      /  ------/     *
+          *   ----- ------     |_____|     /_/     /       *
+          *    |||    /        |_____|      /    / |       *
+          *    /| |  /_/       /_______    /_  /    |      *
+          *   / |     / /     /  /  / |        -------     *
+          *     |    / /|       /  /  |     /     |        *
+          *     |   / /  |     /  /  _|    /   -------     *
+          *                                                *
+          **************************************************
+                                HIJING                      
+                 Heavy Ion Jet INteraction Generator        
+                                  by                        
+                      X. N. Wang  and  M. Gyulassy           
+                       Lawrence Berkeley Laboratory           
+
+
+     MDCY(C221,1)   changed from              1 to              0
+     MDCY(C313,1)   changed from              1 to              0
+     MDCY(C-313,1)  changed from              0 to              0
+     MDCY(C323,1)   changed from              1 to              0
+     MDCY(C-323,1)  changed from              0 to              0
+     MDCY(C311,1)   changed from              1 to              0
+     MDCY(C-311,1)  changed from              0 to              0
+     MDCY(C1114,1)  changed from              1 to              0
+     MDCY(C2114,1)  changed from              1 to              0
+     MDCY(C2214,1)  changed from              1 to              0
+     MDCY(C2224,1)  changed from              1 to              0
+     MDCY(C-1114,1) changed from              0 to              0
+     MDCY(C-2114,1) changed from              0 to              0
+     MDCY(C-2214,1) changed from              0 to              0
+     MDCY(C-2224,1) changed from              0 to              0
+     MDCY(C213,1)   changed from              1 to              0
+     MDCY(C-213,1)  changed from              0 to              0
+     MDCY(C113,1)   changed from              1 to              0
+     MDCY(C223,1)   changed from              1 to              0
+     MDCY(C333,1)   changed from              1 to              0
+     MDCY(C111,1)   changed from              1 to              0
+     MDCY(C310,1)   changed from              1 to              0
+     MDCY(C411,1)   changed from              1 to              0
+     MDCY(C-411,1)  changed from              0 to              0
+     MDCY(C421,1)   changed from              1 to              0
+     MDCY(C-421,1)  changed from              0 to              0
+     MDCY(C431,1)   changed from              1 to              0
+     MDCY(C-431,1)  changed from              0 to              0
+     MDCY(C511,1)   changed from              1 to              0
+     MDCY(C-511,1)  changed from              0 to              0
+     MDCY(C521,1)   changed from              1 to              0
+     MDCY(C-521,1)  changed from              0 to              0
+     MDCY(C531,1)   changed from              1 to              0
+     MDCY(C-531,1)  changed from              0 to              0
+     MDCY(C3122,1)  changed from              1 to              0
+     MDCY(C-3122,1) changed from              0 to              0
+     MDCY(C3112,1)  changed from              1 to              0
+     MDCY(C-3112,1) changed from              0 to              0
+     MDCY(C3212,1)  changed from              1 to              0
+     MDCY(C-3212,1) changed from              0 to              0
+     MDCY(C3222,1)  changed from              1 to              0
+     MDCY(C-3222,1) changed from              0 to              0
+     MDCY(C3312,1)  changed from              1 to              0
+     MDCY(C-3312,1) changed from              0 to              0
+     MDCY(C3322,1)  changed from              1 to              0
+     MDCY(C-3322,1) changed from              0 to              0
+     MDCY(C3334,1)  changed from              1 to              0
+     MDCY(C-3334,1) changed from              0 to              0
+
+
+          **********************************
+
+****************
+          *                                                *
+          *         HIJING has been initialized at         *
+          *             Ecm =    2760.00 GeV/n             *
+          *                                                *
+          *        for A   (208, 82) + A   (208, 82)       *
+          **************************************************
+  EVENT            1 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9716921               0          35
+
+ ******** PYMAXI: summary of differential cross-section maximum search ********
+
+           ==========================================================
+           I                                      I                 I
+           I  ISUB  Subprocess name               I  Maximum value  I
+           I                                      I                 I
+           ==========================================================
+           I                                      I                 I
+           I   11   f + f' -> f + f'              I    2.0676E+01   I
+           I   12   f + fb -> f' + fb'            I    2.1075E-02   I
+           I   13   f + fb -> g + g               I    3.0730E-01   I
+           I   14   f + fb -> g + gamma           I    4.0763E-03   I
+           I   18   f + fb -> gamma + gamma       I    1.8095E-05   I
+           I   28   f + g -> f + g                I    1.7667E+02   I
+           I   29   f + g -> f + gamma            I    1.0562E-01   I
+           I   53   g + g -> f + fb               I    1.7500E+00   I
+           I   68   g + g -> g + g                I    3.3381E+02   I
+           I   81   q + qb -> Q + QB, massive     I    1.5897E-02   I
+           I   82   g + g -> Q + QB, massive      I    1.3536E+00   I
+           I                                      I                 I
+           ==========================================================
+  IN HJANA2, INDP STR           82  PART            3
+  FLAV =            1  PX =   -6.78080991E-02  PY =  -0.174854025    
+  PZ =    726.787903      EE =    726.787903    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          487  PART            1
+  FLAV =            2  PX =    6.33348525E-02  PY =    4.67620976E-02
+  PZ =    557.186646      EE =    557.186646    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2379
+  FLAV =            1  PX =   -6.78080991E-02  PY =  -0.174854025    
+  PZ =    726.787903      EE =    726.787903    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2382
+  FLAV =            2  PX =    6.33348525E-02  PY =    4.67620976E-02
+  PZ =    557.186646      EE =    557.186646    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574062.875            1550   12.9716921    
+  
+  EVENT            2 , RUN            1
+ #impact parameter,nlop,ncolt=   12.5496998               0          24
+  IN HJANA1, GLUON           91
+  FLAV =            1  PX =   -6.78080991E-02  PY =  -0.174854025    
+  PZ =    726.787903      EE =    726.787903    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1247
+  FLAV =            1  PX =    8.92609209E-02  PY =   0.234944046    
+  PZ =   -768.745728      EE =    768.745728    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2348
+  FLAV =            1  PX =    5.63712455E-02  PY =    1.99674871E-02
+  PZ =   -205.940582      EE =    205.940582    
+  XM =    9.89999995E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   1.0000000000000000      dn2(           1 )=   3.0000000000000000     
+  IN HJANA2, INDP STR         1139  PART            1
+  FLAV =            1  PX =   -3.96557190E-02  PY =  -0.209512994    
+  PZ =   -811.610046      EE =    811.610046    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1393  PART            1
+  FLAV =            1  PX =    7.92334080E-02  PY =   -7.63371401E-03
+  PZ =   -793.856445      EE =    793.856445    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2329
+  FLAV =            1  PX =   -3.96557190E-02  PY =  -0.209512994    
+  PZ =   -811.610046      EE =    811.610046    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2410
+  FLAV =            1  PX =    7.92334080E-02  PY =   -7.63371401E-03
+  PZ =   -793.856445      EE =    793.856445    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574097.875            1542   12.5496998    
+  
+  EVENT            3 , RUN            1
+ #impact parameter,nlop,ncolt=   12.5730505               0          51
+  IN HJANA1, GLUON         1819
+  FLAV =            1  PX =   -3.96557190E-02  PY =  -0.209512994    
+  PZ =   -811.610046      EE =    811.610046    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2180
+  FLAV =           -1  PX =    2.64867693E-02  PY =    9.80303250E-03
+  PZ =   -73.7232819      EE =    73.7232819    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2203
+  FLAV =            1  PX =    7.92334080E-02  PY =   -7.63371401E-03
+  PZ =   -793.856445      EE =    793.856445    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          962  PART            1
+  FLAV =            2  PX =   -1.30810263E-02  PY =   -4.84923273E-03
+  PZ =    322.676788      EE =    322.676788    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1380  PART            1
+  FLAV =            2  PX =    6.48845062E-02  PY =    9.32196993E-03
+  PZ =   -309.891541      EE =    309.891541    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1473  PART            1
+  FLAV =            1  PX =   -3.20626870E-02  PY =    2.12287158E-02
+  PZ =   -812.756409      EE =    812.756409    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3866
+  FLAV =            2  PX =   -1.30810263E-02  PY =   -4.84923273E-03
+  PZ =    322.676788      EE =    322.676788    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3987
+  FLAV =            1  PX =   -3.20626870E-02  PY =    2.12287158E-02
+  PZ =   -812.756409      EE =    812.756409    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4013
+  FLAV =            2  PX =    6.48845062E-02  PY =    9.32196993E-03
+  PZ =   -309.891541      EE =    309.891541    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574109.500            2277   12.5730505    
+  
+  EVENT            4 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3229809               0          36
+  IN HJANA1, GLUON         1771
+  FLAV =            2  PX =   -1.30810263E-02  PY =   -4.84923273E-03
+  PZ =    322.676788      EE =    322.676788    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2402
+  FLAV =            2  PX =    6.48845062E-02  PY =    9.32196993E-03
+  PZ =   -309.891541      EE =    309.891541    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2567
+  FLAV =            1  PX =   -3.20626870E-02  PY =    2.12287158E-02
+  PZ =   -812.756409      EE =    812.756409    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          687  PART            3
+  FLAV =            1  PX =    2.65273396E-02  PY =    1.86493248E-02
+  PZ =    248.088074      EE =    248.088074    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1130  PART            3
+  FLAV =            1  PX =   -7.61081949E-02  PY =   -2.25999635E-02
+  PZ =    294.822632      EE =    294.822632    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1234  PART            1
+  FLAV =            2  PX =   -3.03500034E-02  PY =  -0.143300310    
+  PZ =   -722.002563      EE =    722.002563    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3747
+  FLAV =            1  PX =    2.65273396E-02  PY =    1.86493248E-02
+  PZ =    248.088074      EE =    248.088074    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3940
+  FLAV =            2  PX =   -3.03500034E-02  PY =  -0.143300310    
+  PZ =   -722.002563      EE =    722.002563    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3950
+  FLAV =            1  PX =   -7.61081949E-02  PY =   -2.25999635E-02
+  PZ =    294.822632      EE =    294.822632    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574099.938            2254   12.3229809    
+  
+  EVENT            5 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1588659               0           6
+  IN HJANA1, GLUON         1240
+  FLAV =            1  PX =    2.65273396E-02  PY =    1.86493248E-02
+  PZ =    248.088074      EE =    248.088074    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2093
+  FLAV =            1  PX =   -7.61081949E-02  PY =   -2.25999635E-02
+  PZ =    294.822632      EE =    294.822632    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2203
+  FLAV =            2  PX =   -3.03500034E-02  PY =  -0.143300310    
+  PZ =   -722.002563      EE =    722.002563    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2207
+  FLAV =            2  PX =   0.384839654      PY =   -5.09853624E-02
+  PZ =   -1112.63660      EE =    1112.63660    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3603
+  FLAV =            2  PX =    3.27599272E-02  PY =   0.185128659    
+  PZ =   -565.219910      EE =    565.219910    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574081.875             837   13.1588659    
+  
+  EVENT            6 , RUN            1
+ #impact parameter,nlop,ncolt=   12.4882784               0          37
+  IN HJANA1, GLUON          921
+  FLAV =            1  PX =   0.115574084      PY =  -0.156401813    
+  PZ =   -607.504028      EE =    607.504028    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          309  PART            1
+  FLAV =            2  PX =   -7.25135431E-02  PY =   0.168983370    
+  PZ =    564.562195      EE =    564.562195    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          309  PART            3
+  FLAV =            1  PX =   0.113481678      PY =    4.70368452E-02
+  PZ =    589.265747      EE =    589.265747    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3439
+  FLAV =            1  PX =   0.113481678      PY =    4.70368452E-02
+  PZ =    589.265747      EE =    589.265747    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3441
+  FLAV =            2  PX =   -7.25135431E-02  PY =   0.168983370    
+  PZ =    564.562195      EE =    564.562195    
+  XM =    5.59999980E-03
+ 2   6.3795028474447201E-004   1.8463516948347429E-003 -0.99999809443316978        1.0000000048651176                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574108.625            1997   12.4882784    
+  
+  EVENT            7 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1230459               0          27
+  IN HJANA1, GLUON          544
+  FLAV =            2  PX =   -7.25135431E-02  PY =   0.168983370    
+  PZ =    564.562195      EE =    564.562195    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          546
+  FLAV =            1  PX =   0.113481678      PY =    4.70368452E-02
+  PZ =    589.265747      EE =    589.265747    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1351
+  FLAV =            1  PX =  -0.125220969      PY =   -2.27471837E-03
+  PZ =    468.478424      EE =    468.478424    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1533
+  FLAV =            1  PX =   -1.09618716E-02  PY =  -0.203167006    
+  PZ =    601.177246      EE =    601.177246    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          910  PART            3
+  FLAV =            1  PX =   -2.13596839E-02  PY =   -3.05226874E-02
+  PZ =    728.527527      EE =    728.527527    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3113
+  FLAV =            1  PX =   -2.13596839E-02  PY =   -3.05226874E-02
+  PZ =    728.527527      EE =    728.527527    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574104.688            1881   13.1230459    
+  
+  EVENT            8 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1005764               0          17
+  IN HJANA1, GLUON         1569
+  FLAV =            1  PX =   -2.13596839E-02  PY =   -3.05226874E-02
+  PZ =    728.527527      EE =    728.527527    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2167
+  FLAV =           -1  PX =   -1.35848923E-02  PY =   -2.76685525E-02
+  PZ =   -119.201027      EE =    119.201027    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2945
+  FLAV =            1  PX =   0.119459368      PY =  -0.178471774    
+  PZ =   -635.541565      EE =    635.541565    
+  XM =    9.89999995E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   0.0000000000000000      dn2(           1 )=   0.0000000000000000     
+ event=           1
+ dn(           2 )=   0.0000000000000000      dn1(           2 )=   0.0000000000000000      dn2(           2 )=   0.0000000000000000     
+ event=           1
+ dn(           3 )=   0.0000000000000000      dn1(           3 )=   3.0000000000000000      dn2(           3 )=   8.0000000000000000     
+  IN HJANA2, INDP STR         1052  PART            1
+  FLAV =            1  PX =   -4.64015491E-02  PY =   -1.09241726E-02
+  PZ =   -164.358185      EE =    164.358185    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1351
+  FLAV =            1  PX =   -4.64015491E-02  PY =   -1.09241726E-02
+  PZ =   -164.358185      EE =    164.358185    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574068.250            1061   13.1005764    
+  
+  EVENT            9 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3824720               0         105
+  IN HJANA1, GLUON          492
+  FLAV =            2  PX =    6.12734333E-02  PY =    8.53293017E-02
+  PZ =    293.790253      EE =    293.790253    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1407
+  FLAV =            1  PX =   -4.64015491E-02  PY =   -1.09241726E-02
+  PZ =   -164.358185      EE =    164.358185    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1159  PART            3
+  FLAV =            1  PX =  -0.233510494      PY =  -0.122000240    
+  PZ =    1291.40222      EE =    1291.40222    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         3186  PART            2
+  FLAV =           -1  PX =    2.05191858E-02  PY =  -0.150118589    
+  PZ =   -584.108887      EE =    584.108887    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         7374
+  FLAV =           -1  PX =    2.05191858E-02  PY =  -0.150118589    
+  PZ =   -584.108887      EE =    584.108887    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         7529
+  FLAV =            1  PX =  -0.233510494      PY =  -0.122000240    
+  PZ =    1291.40222      EE =    1291.40222    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574223.312            3889   12.3824720    
+  
+  EVENT           10 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9883060               0          29
+  IN HJANA1, GLUON          638
+  FLAV =            2  PX =   0.110312767      PY =    6.70592487E-02
+  PZ =    329.090210      EE =    329.090210    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2305
+  FLAV =            1  PX =  -0.233510494      PY =  -0.122000240    
+  PZ =    1291.40222      EE =    1291.40222    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         6227
+  FLAV =           -1  PX =    2.05191858E-02  PY =  -0.150118589    
+  PZ =   -584.108887      EE =    584.108887    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574070.000            1491   12.9883060    
+  
+  EVENT           11 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7860279               0          32
+  IN HJANA2, INDP STR          320  PART            2
+  FLAV =            2  PX =   -1.90469474E-02  PY =   0.231362417    
+  PZ =    1177.94885      EE =    1177.94885    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1422  PART            1
+  FLAV =            2  PX =   0.114008419      PY =    4.92914841E-02
+  PZ =   -809.882446      EE =    809.882446    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2203  PART            1
+  FLAV =            2  PX =    5.46947829E-02  PY =    1.63994823E-02
+  PZ =   -284.219391      EE =    284.219391    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2241  PART            2
+  FLAV =           -1  PX =    2.38277134E-03  PY =    5.27328392E-03
+  PZ =   -66.7503815      EE =    66.7503815    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4005
+  FLAV =           -1  PX =    2.38277134E-03  PY =    5.27328392E-03
+  PZ =   -66.7503815      EE =    66.7503815    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4008
+  FLAV =            2  PX =    5.46947829E-02  PY =    1.63994823E-02
+  PZ =   -284.219391      EE =    284.219391    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4094
+  FLAV =            2  PX =   -1.90469474E-02  PY =   0.231362417    
+  PZ =    1177.94885      EE =    1177.94885    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4098
+  FLAV =            2  PX =   0.114008419      PY =    4.92914841E-02
+  PZ =   -809.882446      EE =    809.882446    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574121.750            2303   12.7860279    
+  
+  EVENT           12 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1638851               0          26
+  IN HJANA1, GLUON          639
+  FLAV =            2  PX =   -1.90469474E-02  PY =   0.231362417    
+  PZ =    1177.94885      EE =    1177.94885    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2546
+  FLAV =            2  PX =   0.114008419      PY =    4.92914841E-02
+  PZ =   -809.882446      EE =    809.882446    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3968
+  FLAV =            2  PX =    5.46947829E-02  PY =    1.63994823E-02
+  PZ =   -284.219391      EE =    284.219391    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         4042
+  FLAV =           -1  PX =    2.38277134E-03  PY =    5.27328392E-03
+  PZ =   -66.7503815      EE =    66.7503815    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          280  PART            3
+  FLAV =            2  PX =    2.64814799E-03  PY =    3.74686942E-02
+  PZ =    322.567413      EE =    322.567413    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1337  PART            1
+  FLAV =            2  PX =   -6.49978872E-03  PY =    1.52604952E-02
+  PZ =   -100.098343      EE =    100.098343    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1356  PART            3
+  FLAV =            1  PX =   -9.33332145E-02  PY =   -2.76271440E-02
+  PZ =   -959.864929      EE =    959.864929    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2629
+  FLAV =            2  PX =   -6.49978872E-03  PY =    1.52604952E-02
+  PZ =   -100.098343      EE =    100.098343    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2696
+  FLAV =            2  PX =    2.64814799E-03  PY =    3.74686942E-02
+  PZ =    322.567413      EE =    322.567413    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2832
+  FLAV =            1  PX =   -9.33332145E-02  PY =   -2.76271440E-02
+  PZ =   -959.864929      EE =    959.864929    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574088.312            1729   13.1638851    
+  
+  EVENT           13 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7908497               0          27
+  IN HJANA1, GLUON          483
+  FLAV =            2  PX =    2.64814799E-03  PY =    3.74686942E-02
+  PZ =    322.567413      EE =    322.567413    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2267
+  FLAV =            1  PX =   -9.33332145E-02  PY =   -2.76271440E-02
+  PZ =   -959.864929      EE =    959.864929    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          395  PART            1
+  FLAV =            1  PX =    7.90908560E-02  PY =   -5.03121652E-02
+  PZ =    630.488220      EE =    630.488220    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1394  PART            3
+  FLAV =            1  PX =   -1.23962332E-02  PY =    4.30354625E-02
+  PZ =   -873.410278      EE =    873.410278    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2181
+  FLAV =            1  PX =    7.90908560E-02  PY =   -5.03121652E-02
+  PZ =    630.488220      EE =    630.488220    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2204
+  FLAV =            1  PX =   -1.23962332E-02  PY =    4.30354625E-02
+  PZ =   -873.410278      EE =    873.410278    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574150.750            1441   12.7908497    
+  
+  EVENT           14 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1637812               0          42
+  IN HJANA1, GLUON          639
+  FLAV =            2  PX =    1.78125512E-03  PY =   0.227443948    
+  PZ =    766.154236      EE =    766.154236    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          641
+  FLAV =            1  PX =    7.90908560E-02  PY =   -5.03121652E-02
+  PZ =    630.488220      EE =    630.488220    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2227
+  FLAV =            1  PX =   0.218620569      PY =   0.129096568    
+  PZ =   -728.414673      EE =    728.414673    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2230
+  FLAV =            1  PX =   -1.23962332E-02  PY =    4.30354625E-02
+  PZ =   -873.410278      EE =    873.410278    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1061  PART            1
+  FLAV =            1  PX =   -6.98705483E-03  PY =    7.10732117E-02
+  PZ =   -428.240540      EE =    428.240540    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1516  PART            1
+  FLAV =            1  PX =   -1.92684215E-02  PY =    3.48155998E-04
+  PZ =   -303.306396      EE =    303.306396    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1804  PART            2
+  FLAV =            1  PX =   -4.05820198E-02  PY =   -2.00670939E-02
+  PZ =   -145.696304      EE =    145.696304    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3202
+  FLAV =            1  PX =   -4.05820198E-02  PY =   -2.00670939E-02
+  PZ =   -145.696304      EE =    145.696304    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3261
+  FLAV =            1  PX =   -6.98705483E-03  PY =    7.10732117E-02
+  PZ =   -428.240540      EE =    428.240540    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3393
+  FLAV =            1  PX =   -1.92684215E-02  PY =    3.48155998E-04
+  PZ =   -303.306396      EE =    303.306396    
+  XM =    9.89999995E-03
+ 2  -6.6915215308104237E-005   5.4773719959827385E-004 -0.99999986846532196        1.0000000414243471                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574121.750            1992   13.1637812    
+  
+  EVENT           15 , RUN            1
+ #impact parameter,nlop,ncolt=   12.8077755               0           1
+  IN HJANA1, GLUON          881
+  FLAV =           -1  PX =    3.29553485E-02  PY =   -2.02606243E-04
+  PZ =    82.4597473      EE =    82.4597473    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2632
+  FLAV =            1  PX =   -1.92684215E-02  PY =    3.48155998E-04
+  PZ =   -303.306396      EE =    303.306396    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3151
+  FLAV =            1  PX =   -4.05820198E-02  PY =   -2.00670939E-02
+  PZ =   -145.696304      EE =    145.696304    
+  XM =    9.89999995E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   0.0000000000000000      dn2(           1 )=   0.0000000000000000     
+ event=           1
+ dn(           2 )=   0.0000000000000000      dn1(           2 )=   0.0000000000000000      dn2(           2 )=   0.0000000000000000     
+ event=           1
+ dn(           3 )=   0.0000000000000000      dn1(           3 )=   0.0000000000000000      dn2(           3 )=   0.0000000000000000     
+ event=           1
+ dn(           4 )=   0.0000000000000000      dn1(           4 )=   0.0000000000000000      dn2(           4 )=   0.0000000000000000     
+ event=           1
+ dn(           5 )=   0.0000000000000000      dn1(           5 )=   3.0000000000000000      dn2(           5 )=   9.0000000000000000     
+  IN HJANA2, INDP STR          417  PART            2
+  FLAV =            2  PX =   -2.24937699E-04  PY =  -0.368143529    
+  PZ =   -1309.51672      EE =    1309.51672    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          421  PART            1
+  FLAV =            2  PX =   -7.47871250E-02  PY =    3.74993496E-02
+  PZ =   -328.817993      EE =    328.817993    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON          154
+  FLAV =            2  PX =   -7.47871250E-02  PY =    3.74993496E-02
+  PZ =   -328.817993      EE =    328.817993    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON          156
+  FLAV =            2  PX =   -2.24937699E-04  PY =  -0.368143529    
+  PZ =   -1309.51672      EE =    1309.51672    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574079.375             488   12.8077755    
+  
+  EVENT           16 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9408140               0          25
+  IN HJANA1, GLUON          161
+  FLAV =            2  PX =   -2.24937699E-04  PY =  -0.368143529    
+  PZ =   -1309.51672      EE =    1309.51672    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR           48  PART            2
+  FLAV =            2  PX =   -4.59585115E-02  PY =   0.310830921    
+  PZ =    1281.52563      EE =    1281.52563    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          810  PART            2
+  FLAV =           -1  PX =   -2.27742386E-03  PY =   -7.28846900E-03
+  PZ =   -81.2433548      EE =    81.2433548    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          837  PART            1
+  FLAV =            1  PX =   -2.88510453E-02  PY =    6.39216881E-03
+  PZ =   -228.288651      EE =    228.288651    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          987  PART            1
+  FLAV =            1  PX =    9.68870521E-03  PY =   -8.73301923E-03
+  PZ =   -70.7556229      EE =    70.7556229    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1155  PART            2
+  FLAV =           -1  PX =    9.65028405E-02  PY =  -0.101338945    
+  PZ =   -656.719727      EE =    656.719727    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1790
+  FLAV =           -1  PX =   -2.27742386E-03  PY =   -7.28846900E-03
+  PZ =   -81.2433548      EE =    81.2433548    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1918
+  FLAV =           -1  PX =    9.65028405E-02  PY =  -0.101338945    
+  PZ =   -656.719727      EE =    656.719727    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1938
+  FLAV =            1  PX =    9.68870521E-03  PY =   -8.73301923E-03
+  PZ =   -70.7556229      EE =    70.7556229    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1984
+  FLAV =            1  PX =   -2.88510453E-02  PY =    6.39216881E-03
+  PZ =   -228.288651      EE =    228.288651    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2022
+  FLAV =            2  PX =   -4.59585115E-02  PY =   0.310830921    
+  PZ =    1281.52563      EE =    1281.52563    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574103.500            1330   12.9408140    
+  
+  EVENT           17 , RUN            1
+ #impact parameter,nlop,ncolt=   12.4272642               0          35
+  IN HJANA1, GLUON         1251
+  FLAV =           -1  PX =   -2.27742386E-03  PY =   -7.28846900E-03
+  PZ =   -81.2433548      EE =    81.2433548    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1297
+  FLAV =            1  PX =   -2.88510453E-02  PY =    6.39216881E-03
+  PZ =   -228.288651      EE =    228.288651    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1507
+  FLAV =            1  PX =    9.68870521E-03  PY =   -8.73301923E-03
+  PZ =   -70.7556229      EE =    70.7556229    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          132  PART            2
+  FLAV =            2  PX =   0.120855086      PY =   -6.97118863E-02
+  PZ =    608.899292      EE =    608.899292    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          171  PART            2
+  FLAV =           -2  PX =    3.40404063E-02  PY =   -1.65483113E-02
+  PZ =    128.304428      EE =    128.304428    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          290  PART            1
+  FLAV =            1  PX =    2.11841892E-02  PY =   0.236178488    
+  PZ =    1257.74158      EE =    1257.74158    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          713  PART            2
+  FLAV =           -2  PX =   -2.84764022E-02  PY =    2.98965611E-02
+  PZ =    198.806885      EE =    198.806885    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          947  PART            1
+  FLAV =            2  PX =    4.38847020E-03  PY =   -8.89841653E-03
+  PZ =    115.688148      EE =    115.688148    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1106  PART            3
+  FLAV =            2  PX =  -0.100506715      PY =   -3.77528090E-03
+  PZ =    481.419159      EE =    481.419159    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3629
+  FLAV =            2  PX =  -0.100506715      PY =   -3.77528090E-03
+  PZ =    481.419159      EE =    481.419159    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3658
+  FLAV =            2  PX =    4.38847020E-03  PY =   -8.89841653E-03
+  PZ =    115.688148      EE =    115.688148    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3692
+  FLAV =           -2  PX =   -2.84764022E-02  PY =    2.98965611E-02
+  PZ =    198.806885      EE =    198.806885    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3705
+  FLAV =           -2  PX =    3.40404063E-02  PY =   -1.65483113E-02
+  PZ =    128.304428      EE =    128.304428    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3738
+  FLAV =            1  PX =    2.11841892E-02  PY =   0.236178488    
+  PZ =    1257.74158      EE =    1257.74158    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3742
+  FLAV =            2  PX =   0.120855086      PY =   -6.97118863E-02
+  PZ =    608.899292      EE =    608.899292    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574121.062            2135   12.4272642    
+  
+  EVENT           18 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3818054               0          53
+  IN HJANA1, GLUON          266
+  FLAV =            2  PX =   0.120855086      PY =   -6.97118863E-02
+  PZ =    608.899292      EE =    608.899292    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          312
+  FLAV =           -2  PX =    3.40404063E-02  PY =   -1.65483113E-02
+  PZ =    128.304428      EE =    128.304428    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1321
+  FLAV =           -2  PX =   -2.84764022E-02  PY =    2.98965611E-02
+  PZ =    198.806885      EE =    198.806885    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1723
+  FLAV =            2  PX =    4.38847020E-03  PY =   -8.89841653E-03
+  PZ =    115.688148      EE =    115.688148    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1993
+  FLAV =            2  PX =  -0.100506715      PY =   -3.77528090E-03
+  PZ =    481.419159      EE =    481.419159    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1999
+  FLAV =           -2  PX =    2.68530697E-02  PY =    1.32053457E-02
+  PZ =    68.3003540      EE =    68.3003540    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1596  PART            2
+  FLAV =            2  PX =   -1.42849647E-02  PY =    8.42931420E-02
+  PZ =   -276.572693      EE =    276.572693    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1649  PART            1
+  FLAV =            2  PX =   0.102510966      PY =  -0.141127452    
+  PZ =   -626.025879      EE =    626.025879    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1937  PART            1
+  FLAV =            2  PX =    2.78635672E-03  PY =    4.91311261E-03
+  PZ =   -430.611816      EE =    430.611816    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1937  PART            3
+  FLAV =            1  PX =    1.48821361E-02  PY =  -0.174492791    
+  PZ =   -741.186218      EE =    741.186218    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4344
+  FLAV =            2  PX =   -1.42849647E-02  PY =    8.42931420E-02
+  PZ =   -276.572693      EE =    276.572693    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4444
+  FLAV =            1  PX =    1.48821361E-02  PY =  -0.174492791    
+  PZ =   -741.186218      EE =    741.186218    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4446
+  FLAV =            2  PX =    2.78635672E-03  PY =    4.91311261E-03
+  PZ =   -430.611816      EE =    430.611816    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4518
+  FLAV =            2  PX =   0.102510966      PY =  -0.141127452    
+  PZ =   -626.025879      EE =    626.025879    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574101.938            2557   12.3818054    
+  
+  EVENT           19 , RUN            1
+ #impact parameter,nlop,ncolt=   13.0942583               0          27
+  IN HJANA1, GLUON         2978
+  FLAV =            2  PX =   0.102510966      PY =  -0.141127452    
+  PZ =   -626.025879      EE =    626.025879    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3523
+  FLAV =            2  PX =    2.78635672E-03  PY =    4.91311261E-03
+  PZ =   -430.611816      EE =    430.611816    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3525
+  FLAV =            1  PX =    1.48821361E-02  PY =  -0.174492791    
+  PZ =   -741.186218      EE =    741.186218    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1021  PART            1
+  FLAV =            2  PX =   -2.80264951E-02  PY =   -1.37789631E-02
+  PZ =   -164.815399      EE =    164.815399    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1380  PART            1
+  FLAV =            2  PX =    8.62239525E-02  PY =    2.18532290E-02
+  PZ =   -631.200134      EE =    631.200134    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2529
+  FLAV =            2  PX =   -2.80264951E-02  PY =   -1.37789631E-02
+  PZ =   -164.815399      EE =    164.815399    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2590
+  FLAV =            2  PX =    8.62239525E-02  PY =    2.18532290E-02
+  PZ =   -631.200134      EE =    631.200134    
+  XM =    5.59999980E-03
+ 2  -2.2566796746990416E-003   4.0831614484253688E-004  0.99999738770875846        1.0000000347495694                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574082.938            1614   13.0942583    
+  
+  EVENT           20 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9150906               0          24
+  IN HJANA1, GLUON         1439
+  FLAV =            2  PX =  -0.104528934      PY =    7.50392035E-04
+  PZ =    262.089539      EE =    262.089539    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2208
+  FLAV =            2  PX =    8.62239525E-02  PY =    2.18532290E-02
+  PZ =   -631.200134      EE =    631.200134    
+  XM =    5.59999980E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   0.0000000000000000      dn2(           1 )=   2.0000000000000000     
+  IN HJANA2, INDP STR          845  PART            2
+  FLAV =            2  PX =    1.97823904E-02  PY =   -9.31392983E-02
+  PZ =   -543.165344      EE =    543.165344    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2228
+  FLAV =            2  PX =    1.97823904E-02  PY =   -9.31392983E-02
+  PZ =   -543.165344      EE =    543.165344    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574080.375            1472   12.9150906    
+  
+  EVENT           21 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9324074               0          25
+  IN HJANA1, GLUON         1337
+  FLAV =            2  PX =    1.97823904E-02  PY =   -9.31392983E-02
+  PZ =   -543.165344      EE =    543.165344    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          118  PART            1
+  FLAV =            2  PX =   0.106073767      PY =   0.116060667    
+  PZ =    746.130127      EE =    746.130127    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          903  PART            3
+  FLAV =            1  PX =   0.136692286      PY =   0.154389948    
+  PZ =   -727.355652      EE =    727.355652    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          932  PART            2
+  FLAV =            2  PX =  -0.135581732      PY =   -7.68476203E-02
+  PZ =   -898.826538      EE =    898.826538    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2482
+  FLAV =            2  PX =   0.106073767      PY =   0.116060667    
+  PZ =    746.130127      EE =    746.130127    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2508
+  FLAV =            2  PX =  -0.135581732      PY =   -7.68476203E-02
+  PZ =   -898.826538      EE =    898.826538    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2520
+  FLAV =            1  PX =   0.136692286      PY =   0.154389948    
+  PZ =   -727.355652      EE =    727.355652    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574095.500            1619   12.9324074    
+  
+ IN HJANA4
+  PARTICLE         2271  RUN            1 PREC ERR
+  FLAV =          211  PX =   -7.07323179E-02  PY =  -0.154864758    
+  PZ =   -891.425171      EE =    891.425171    
+  XM =   0.139599994    
+ IN ARTAN2
+ PARTICLE         2271  RUN            1 PREC ERR
+  FLAV =          211  PX =   -7.07323179E-02  PY =  -0.154864758    
+  PZ =   -891.425171      EE =    891.425171    
+  XM =   0.139599994    
+  EVENT           22 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7839928               0          44
+  IN HJANA1, GLUON          196
+  FLAV =            2  PX =   0.106073767      PY =   0.116060667    
+  PZ =    746.130127      EE =    746.130127    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1197
+  FLAV =            1  PX =    2.35703699E-02  PY =   -4.47916463E-02
+  PZ =   -171.228699      EE =    171.228699    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1455
+  FLAV =            2  PX =  -0.135581732      PY =   -7.68476203E-02
+  PZ =   -898.826538      EE =    898.826538    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2457
+  FLAV =           -1  PX =   0.150905743      PY =  -0.242527083    
+  PZ =   -732.867310      EE =    732.867310    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          416  PART            1
+  FLAV =            1  PX =  -0.119269498      PY =   0.139267102    
+  PZ =    653.872009      EE =    653.872009    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          416  PART            3
+  FLAV =            1  PX =   -1.73333082E-02  PY =   -7.23120570E-02
+  PZ =    433.448120      EE =    433.448120    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1098  PART            3
+  FLAV =            1  PX =   0.103135251      PY =   -9.74410772E-02
+  PZ =   -873.846375      EE =    873.846375    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1717  PART            3
+  FLAV =            1  PX =   0.120779291      PY =   0.227513865    
+  PZ =   -1086.83716      EE =    1086.83716    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3381
+  FLAV =            1  PX =   0.103135251      PY =   -9.74410772E-02
+  PZ =   -873.846375      EE =    873.846375    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3449
+  FLAV =            1  PX =   0.120779291      PY =   0.227513865    
+  PZ =   -1086.83716      EE =    1086.83716    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3467
+  FLAV =            1  PX =   -1.73333082E-02  PY =   -7.23120570E-02
+  PZ =    433.448120      EE =    433.448120    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3469
+  FLAV =            1  PX =  -0.119269498      PY =   0.139267102    
+  PZ =    653.872009      EE =    653.872009    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574099.125            2038   12.7839928    
+  
+  EVENT           23 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3035078               0          67
+  IN HJANA1, GLUON          694
+  FLAV =            1  PX =  -0.119269498      PY =   0.139267102    
+  PZ =    653.872009      EE =    653.872009    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON          696
+  FLAV =            1  PX =   -1.73333082E-02  PY =   -7.23120570E-02
+  PZ =    433.448120      EE =    433.448120    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1834
+  FLAV =            1  PX =   0.103135251      PY =   -9.74410772E-02
+  PZ =   -873.846375      EE =    873.846375    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2121
+  FLAV =           -1  PX =    1.74608454E-02  PY =   -1.37798777E-02
+  PZ =    70.9831543      EE =    70.9831543    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2975
+  FLAV =            1  PX =   0.120779291      PY =   0.227513865    
+  PZ =   -1086.83716      EE =    1086.83716    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         3404  PART            2
+  FLAV =            2  PX =   -9.23497304E-02  PY =   -2.64593754E-02
+  PZ =   -732.082947      EE =    732.082947    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         3715  PART            2
+  FLAV =           -2  PX =    8.60022381E-03  PY =   -8.83635040E-03
+  PZ =   -380.985748      EE =    380.985748    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         6971
+  FLAV =           -2  PX =    8.60022381E-03  PY =   -8.83635040E-03
+  PZ =   -380.985748      EE =    380.985748    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         7033
+  FLAV =            2  PX =   -9.23497304E-02  PY =   -2.64593754E-02
+  PZ =   -732.082947      EE =    732.082947    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574187.062            3732   12.3035078    
+  
+ IN ARTAN1
+ PARTICLE         3730  RUN            1 PREC ERR
+  FLAV =          111  PX =    5.60381711E-02  PY =   -2.72330232E-02
+  PZ =   -432.766022      EE =    432.766022    
+  XM =   0.135000005    
+ IN HJANA3
+  PARTICLE         3730  RUN            1 PREC ERR
+  FLAV =          111  PX =    5.60381711E-02  PY =   -2.72330232E-02
+  PZ =   -432.766022      EE =    432.766022    
+  XM =   0.135000005    
+ IN HJANA4
+  PARTICLE         5275  RUN            1 PREC ERR
+  FLAV =          111  PX =    5.60381711E-02  PY =   -2.72330232E-02
+  PZ =   -432.766022      EE =    432.766022    
+  XM =   0.135000005    
+ IN ARTAN2
+ PARTICLE         5275  RUN            1 PREC ERR
+  FLAV =          111  PX =    5.60381711E-02  PY =   -2.72330232E-02
+  PZ =   -432.766022      EE =    432.766022    
+  XM =   0.135000005    
+  EVENT           24 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7483988               0          50
+  IN HJANA1, GLUON         2833
+  FLAV =           -2  PX =    1.07289664E-02  PY =   -1.33388275E-02
+  PZ =    46.9953384      EE =    46.9953384    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         6087
+  FLAV =            2  PX =   -3.88057972E-03  PY =   -2.37483461E-03
+  PZ =   -23.4603920      EE =    23.4603920    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         6562
+  FLAV =            2  PX =   -9.23497304E-02  PY =   -2.64593754E-02
+  PZ =   -732.082947      EE =    732.082947    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         7170
+  FLAV =           -2  PX =    8.60022381E-03  PY =   -8.83635040E-03
+  PZ =   -380.985748      EE =    380.985748    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1912  PART            2
+  FLAV =           -1  PX =    4.74800132E-02  PY =   -5.03971940E-03
+  PZ =   -253.281113      EE =    253.281113    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4660
+  FLAV =           -1  PX =    4.74800132E-02  PY =   -5.03971940E-03
+  PZ =   -253.281113      EE =    253.281113    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574129.250            2616   12.7483988    
+  
+  EVENT           25 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9277449               0          21
+  IN HJANA1, GLUON         1890
+  FLAV =            1  PX =  -0.175504491      PY =  -0.123004116    
+  PZ =    711.538330      EE =    711.538330    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1643  PART            2
+  FLAV =            1  PX =   -3.62016372E-02  PY =   -1.43388601E-03
+  PZ =   -148.093430      EE =    148.093430    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2531
+  FLAV =            1  PX =   -3.62016372E-02  PY =   -1.43388601E-03
+  PZ =   -148.093430      EE =    148.093430    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574090.688            1662   12.9277449    
+  
+  EVENT           26 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3303919               0          22
+  IN HJANA1, GLUON         2693
+  FLAV =            1  PX =   -3.62016372E-02  PY =   -1.43388601E-03
+  PZ =   -148.093430      EE =    148.093430    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          413  PART            3
+  FLAV =            1  PX =  -0.313263208      PY =  -0.168745324    
+  PZ =    1232.64551      EE =    1232.64551    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1209  PART            2
+  FLAV =            2  PX =   -5.50547652E-02  PY =  -0.196903005    
+  PZ =   -1050.35010      EE =    1050.35010    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2126
+  FLAV =            2  PX =   -5.50547652E-02  PY =  -0.196903005    
+  PZ =   -1050.35010      EE =    1050.35010    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2177
+  FLAV =            1  PX =  -0.313263208      PY =  -0.168745324    
+  PZ =    1232.64551      EE =    1232.64551    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574048.000            1431   12.3303919    
+  
+  EVENT           27 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3746567               0          20
+  IN HJANA1, GLUON          936
+  FLAV =            1  PX =   0.192944452      PY =  -0.402663052    
+  PZ =    1232.62915      EE =    1232.62915    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1899
+  FLAV =            2  PX =   -5.50547652E-02  PY =  -0.196903005    
+  PZ =   -1050.35010      EE =    1050.35010    
+  XM =    5.59999980E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   0.0000000000000000      dn2(           1 )=   3.0000000000000000     
+ event=           1
+ dn(           2 )=   0.0000000000000000      dn1(           2 )=   1.0000000000000000      dn2(           2 )=   4.0000000000000000     
+  IN HJANA2, INDP STR         1070  PART            2
+  FLAV =            2  PX =  -0.177335516      PY =   -1.63852442E-02
+  PZ =   -1175.08252      EE =    1175.08252    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1111  PART            3
+  FLAV =            1  PX =    6.22684956E-02  PY =   -4.26088013E-02
+  PZ =   -724.862915      EE =    724.862915    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1841
+  FLAV =            1  PX =    6.22684956E-02  PY =   -4.26088013E-02
+  PZ =   -724.862915      EE =    724.862915    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1849
+  FLAV =            2  PX =  -0.177335516      PY =   -1.63852442E-02
+  PZ =   -1175.08252      EE =    1175.08252    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574089.188            1299   12.3746567    
+  
+  EVENT           28 , RUN            1
+ #impact parameter,nlop,ncolt=   12.5575275               0          70
+  IN HJANA1, GLUON         1598
+  FLAV =            2  PX =  -0.177335516      PY =   -1.63852442E-02
+  PZ =   -1175.08252      EE =    1175.08252    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1605
+  FLAV =            1  PX =    6.22684956E-02  PY =   -4.26088013E-02
+  PZ =   -724.862915      EE =    724.862915    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          360  PART            3
+  FLAV =            1  PX =  -0.228945255      PY =   -3.67474332E-02
+  PZ =    902.810913      EE =    902.810913    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          625  PART            1
+  FLAV =            2  PX =   -2.42754221E-02  PY =    2.99251662E-03
+  PZ =    135.925446      EE =    135.925446    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1946  PART            2
+  FLAV =           -1  PX =   -7.34621193E-03  PY =   0.148553371    
+  PZ =   -533.974731      EE =    533.974731    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         2729  PART            1
+  FLAV =            2  PX =   -8.11113324E-03  PY =    6.94492832E-02
+  PZ =   -306.731018      EE =    306.731018    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2732  PART            2
+  FLAV =            1  PX =   0.163491070      PY =   -5.43634184E-02
+  PZ =   -791.197998      EE =    791.197998    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5811
+  FLAV =           -1  PX =   -7.34621193E-03  PY =   0.148553371    
+  PZ =   -533.974731      EE =    533.974731    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5879
+  FLAV =            1  PX =  -0.228945255      PY =   -3.67474332E-02
+  PZ =    902.810913      EE =    902.810913    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5943
+  FLAV =            1  PX =   0.163491070      PY =   -5.43634184E-02
+  PZ =   -791.197998      EE =    791.197998    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5948
+  FLAV =            2  PX =   -8.11113324E-03  PY =    6.94492832E-02
+  PZ =   -306.731018      EE =    306.731018    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         5985
+  FLAV =            2  PX =   -2.42754221E-02  PY =    2.99251662E-03
+  PZ =    135.925446      EE =    135.925446    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574103.312            3207   12.5575275    
+  
+  EVENT           29 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9394207               0          35
+  IN HJANA1, GLUON         1207
+  FLAV =            2  PX =   -2.42754221E-02  PY =    2.99251662E-03
+  PZ =    135.925446      EE =    135.925446    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3734
+  FLAV =           -1  PX =   -7.34621193E-03  PY =   0.148553371    
+  PZ =   -533.974731      EE =    533.974731    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         5173
+  FLAV =            2  PX =   -8.11113324E-03  PY =    6.94492832E-02
+  PZ =   -306.731018      EE =    306.731018    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          282  PART            1
+  FLAV =            2  PX =   -2.35041622E-02  PY =    2.57972758E-02
+  PZ =    130.578781      EE =    130.578781    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1025  PART            2
+  FLAV =            2  PX =   -3.57482396E-02  PY =    3.29009220E-02
+  PZ =    247.903000      EE =    247.903000    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3538
+  FLAV =            2  PX =   -2.35041622E-02  PY =    2.57972758E-02
+  PZ =    130.578781      EE =    130.578781    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3554
+  FLAV =            2  PX =   -3.57482396E-02  PY =    3.29009220E-02
+  PZ =    247.903000      EE =    247.903000    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574125.812            2107   12.9394207    
+  
+  EVENT           30 , RUN            1
+ #impact parameter,nlop,ncolt=   13.0289078               0          36
+  IN HJANA1, GLUON          502
+  FLAV =            2  PX =   -2.35041622E-02  PY =    2.57972758E-02
+  PZ =    130.578781      EE =    130.578781    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1456  PART            3
+  FLAV =            1  PX =  -0.173427194      PY =    7.07102939E-02
+  PZ =   -594.901855      EE =    594.901855    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1804  PART            1
+  FLAV =            2  PX =   -1.10915238E-02  PY =   -5.77877695E-03
+  PZ =   -88.0633087      EE =    88.0633087    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1846  PART            3
+  FLAV =            1  PX =    5.19333733E-03  PY =    1.90810934E-02
+  PZ =   -704.707520      EE =    704.707520    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1857  PART            3
+  FLAV =            1  PX =    9.43646431E-02  PY =  -0.223774210    
+  PZ =   -986.271118      EE =    986.271118    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3527
+  FLAV =            1  PX =    9.43646431E-02  PY =  -0.223774210    
+  PZ =   -986.271118      EE =    986.271118    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3531
+  FLAV =            1  PX =    5.19333733E-03  PY =    1.90810934E-02
+  PZ =   -704.707520      EE =    704.707520    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3547
+  FLAV =            2  PX =   -1.10915238E-02  PY =   -5.77877695E-03
+  PZ =   -88.0633087      EE =    88.0633087    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3583
+  FLAV =            1  PX =  -0.173427194      PY =    7.07102939E-02
+  PZ =   -594.901855      EE =    594.901855    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574101.938            2077   13.0289078    
+  
+  EVENT           31 , RUN            1
+ #impact parameter,nlop,ncolt=   12.8508520               0           9
+  IN HJANA1, GLUON         1766
+  FLAV =            2  PX =    2.47955807E-02  PY =   -8.16254038E-03
+  PZ =    83.0803299      EE =    83.0803299    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2540
+  FLAV =            1  PX =  -0.173427194      PY =    7.07102939E-02
+  PZ =   -594.901855      EE =    594.901855    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3229
+  FLAV =            1  PX =    5.19333733E-03  PY =    1.90810934E-02
+  PZ =   -704.707520      EE =    704.707520    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3232
+  FLAV =            1  PX =    9.43646431E-02  PY =  -0.223774210    
+  PZ =   -986.271118      EE =    986.271118    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3276
+  FLAV =            1  PX =  -0.144362375      PY =   -4.12844084E-02
+  PZ =   -407.492493      EE =    407.492493    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          546  PART            2
+  FLAV =           -2  PX =   -2.00802535E-02  PY =    2.30886359E-02
+  PZ =   -130.076996      EE =    130.076996    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON          931
+  FLAV =           -2  PX =   -2.00802535E-02  PY =    2.30886359E-02
+  PZ =   -130.076996      EE =    130.076996    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574093.750             851   12.8508520    
+  
+  EVENT           32 , RUN            1
+ #impact parameter,nlop,ncolt=   12.5545425               0          19
+  IN HJANA1, GLUON          616
+  FLAV =           -2  PX =   -2.00802535E-02  PY =    2.30886359E-02
+  PZ =   -130.076996      EE =    130.076996    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          396  PART            1
+  FLAV =            1  PX =    3.43426690E-02  PY =    4.59382981E-02
+  PZ =    265.704865      EE =    265.704865    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          459  PART            1
+  FLAV =            2  PX =    1.88694093E-02  PY =    1.74633376E-02
+  PZ =    264.786438      EE =    264.786438    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          459  PART            2
+  FLAV =            2  PX =   -3.11585069E-02  PY =   -5.79579035E-03
+  PZ =    199.708267      EE =    199.708267    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          500  PART            1
+  FLAV =            1  PX =    1.95042919E-02  PY =    7.20545650E-03
+  PZ =    234.763641      EE =    234.763641    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1645
+  FLAV =            1  PX =    1.95042919E-02  PY =    7.20545650E-03
+  PZ =    234.763641      EE =    234.763641    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1651
+  FLAV =            2  PX =   -3.11585069E-02  PY =   -5.79579035E-03
+  PZ =    199.708267      EE =    199.708267    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         1652
+  FLAV =            2  PX =    1.88694093E-02  PY =    1.74633376E-02
+  PZ =    264.786438      EE =    264.786438    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         1670
+  FLAV =            1  PX =    3.43426690E-02  PY =    4.59382981E-02
+  PZ =    265.704865      EE =    265.704865    
+  XM =    9.89999995E-03
+ 2  -7.8412865434147286E-004   5.1668270150237042E-003 -0.99998636573717936        1.0000000426194016                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574083.250            1183   12.5545425    
+  
+  EVENT           33 , RUN            1
+ #impact parameter,nlop,ncolt=   12.6449633               0          16
+  IN HJANA1, GLUON          624
+  FLAV =            1  PX =    3.43426690E-02  PY =    4.59382981E-02
+  PZ =    265.704865      EE =    265.704865    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON          675
+  FLAV =            2  PX =    1.88694093E-02  PY =    1.74633376E-02
+  PZ =    264.786438      EE =    264.786438    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          676
+  FLAV =            2  PX =   -3.11585069E-02  PY =   -5.79579035E-03
+  PZ =    199.708267      EE =    199.708267    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          720
+  FLAV =            1  PX =    1.95042919E-02  PY =    7.20545650E-03
+  PZ =    234.763641      EE =    234.763641    
+  XM =    9.89999995E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   0.0000000000000000      dn2(           1 )=   1.0000000000000000     
+ event=           1
+ dn(           2 )=   0.0000000000000000      dn1(           2 )=   0.0000000000000000      dn2(           2 )=   1.0000000000000000     
+  IN HJANA2, INDP STR          604  PART            2
+  FLAV =            2  PX =   0.202007771      PY =  -0.157554537    
+  PZ =    1056.19873      EE =    1056.19873    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1067  PART            3
+  FLAV =            1  PX =    6.69421107E-02  PY =   -2.47382279E-02
+  PZ =   -528.561951      EE =    528.561951    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1211  PART            2
+  FLAV =           -2  PX =   -2.37446148E-02  PY =    2.03180201E-02
+  PZ =   -159.141113      EE =    159.141113    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         1747
+  FLAV =           -2  PX =   -2.37446148E-02  PY =    2.03180201E-02
+  PZ =   -159.141113      EE =    159.141113    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         1772
+  FLAV =            2  PX =   0.202007771      PY =  -0.157554537    
+  PZ =    1056.19873      EE =    1056.19873    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         1810
+  FLAV =            1  PX =    6.69421107E-02  PY =   -2.47382279E-02
+  PZ =   -528.561951      EE =    528.561951    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   573990.250            1270   12.6449633    
+  
+  EVENT           34 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7659092               0          36
+  IN HJANA1, GLUON          972
+  FLAV =            2  PX =   0.202007771      PY =  -0.157554537    
+  PZ =    1056.19873      EE =    1056.19873    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1405
+  FLAV =            2  PX =   -5.47923557E-02  PY =  -0.147334009    
+  PZ =   -428.007446      EE =    428.007446    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1562
+  FLAV =            1  PX =    6.69421107E-02  PY =   -2.47382279E-02
+  PZ =   -528.561951      EE =    528.561951    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1788
+  FLAV =           -2  PX =   -2.37446148E-02  PY =    2.03180201E-02
+  PZ =   -159.141113      EE =    159.141113    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          175  PART            2
+  FLAV =            2  PX =   0.229216501      PY =    4.75025661E-02
+  PZ =    1252.62988      EE =    1252.62988    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1051  PART            2
+  FLAV =           -2  PX =   -2.13545132E-02  PY =   -4.74454323E-03
+  PZ =   -178.680984      EE =    178.680984    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1414  PART            1
+  FLAV =            1  PX =   -2.49748472E-02  PY =    9.95847657E-02
+  PZ =   -393.539459      EE =    393.539459    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1606  PART            3
+  FLAV =            1  PX =  -0.104181543      PY =   -3.77964019E-03
+  PZ =   -790.743164      EE =    790.743164    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1671  PART            2
+  FLAV =            2  PX =  -0.110883877      PY =    2.51489468E-02
+  PZ =   -1343.13477      EE =    1343.13477    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3690
+  FLAV =           -2  PX =   -2.13545132E-02  PY =   -4.74454323E-03
+  PZ =   -178.680984      EE =    178.680984    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3754
+  FLAV =            2  PX =  -0.110883877      PY =    2.51489468E-02
+  PZ =   -1343.13477      EE =    1343.13477    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3770
+  FLAV =            1  PX =  -0.104181543      PY =   -3.77964019E-03
+  PZ =   -790.743164      EE =    790.743164    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3798
+  FLAV =            2  PX =   0.229216501      PY =    4.75025661E-02
+  PZ =    1252.62988      EE =    1252.62988    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3824
+  FLAV =            1  PX =   -2.49748472E-02  PY =    9.95847657E-02
+  PZ =   -393.539459      EE =    393.539459    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574074.625            2174   12.7659092    
+  
+  EVENT           35 , RUN            1
+ #impact parameter,nlop,ncolt=   12.6089420               0          39
+  IN HJANA1, GLUON         1819
+  FLAV =           -2  PX =   -2.13545132E-02  PY =   -4.74454323E-03
+  PZ =   -178.680984      EE =    178.680984    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2466
+  FLAV =            1  PX =   -2.49748472E-02  PY =    9.95847657E-02
+  PZ =   -393.539459      EE =    393.539459    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2917
+  FLAV =            2  PX =  -0.110883877      PY =    2.51489468E-02
+  PZ =   -1343.13477      EE =    1343.13477    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1088  PART            3
+  FLAV =            1  PX =    6.42303899E-02  PY =   0.133568838    
+  PZ =   -556.225830      EE =    556.225830    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1375  PART            1
+  FLAV =            1  PX =   -4.99107800E-02  PY =    3.83559684E-03
+  PZ =   -285.659973      EE =    285.659973    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1918  PART            3
+  FLAV =            1  PX =    9.13391635E-02  PY =   0.103087336    
+  PZ =   -704.382935      EE =    704.382935    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3789
+  FLAV =            1  PX =    6.42303899E-02  PY =   0.133568838    
+  PZ =   -556.225830      EE =    556.225830    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3830
+  FLAV =            1  PX =    9.13391635E-02  PY =   0.103087336    
+  PZ =   -704.382935      EE =    704.382935    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3935
+  FLAV =            1  PX =   -4.99107800E-02  PY =    3.83559684E-03
+  PZ =   -285.659973      EE =    285.659973    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574094.562            2258   12.6089420    
+  
+  EVENT           36 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9300070               0           9
+  IN HJANA1, GLUON         1836
+  FLAV =            1  PX =    6.42303899E-02  PY =   0.133568838    
+  PZ =   -556.225830      EE =    556.225830    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2347
+  FLAV =            1  PX =   -4.99107800E-02  PY =    3.83559684E-03
+  PZ =   -285.659973      EE =    285.659973    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3394
+  FLAV =            1  PX =    9.13391635E-02  PY =   0.103087336    
+  PZ =   -704.382935      EE =    704.382935    
+  XM =    9.89999995E-03
+ event=           1
+ dn(           1 )=   0.0000000000000000      dn1(           1 )=   3.0000000000000000      dn2(           1 )=   3.0000000000000000     
+ event=           1
+ dn(           2 )=   0.0000000000000000      dn1(           2 )=   4.0000000000000000      dn2(           2 )=   5.0000000000000000     
+  IN HJANA2, INDP STR           41  PART            2
+  FLAV =           -1  PX =    2.32428983E-02  PY =    2.60792114E-02
+  PZ =    164.971588      EE =    164.971588    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON          888
+  FLAV =           -1  PX =    2.32428983E-02  PY =    2.60792114E-02
+  PZ =    164.971588      EE =    164.971588    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574084.062             835   12.9300070    
+  
+  EVENT           37 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7737036               0          49
+  IN HJANA1, GLUON           88
+  FLAV =           -1  PX =    2.32428983E-02  PY =    2.60792114E-02
+  PZ =    164.971588      EE =    164.971588    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          337  PART            2
+  FLAV =           -2  PX =    7.28096580E-03  PY =   -8.68940912E-03
+  PZ =    419.168396      EE =    419.168396    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          968  PART            3
+  FLAV =            1  PX =   -6.63392693E-02  PY =   -6.07832074E-02
+  PZ =    287.754822      EE =    287.754822    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4187
+  FLAV =            1  PX =   -6.63392693E-02  PY =   -6.07832074E-02
+  PZ =    287.754822      EE =    287.754822    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4248
+  FLAV =           -2  PX =    7.28096580E-03  PY =   -8.68940912E-03
+  PZ =    419.168396      EE =    419.168396    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   573994.562            2425   12.7737036    
+  
+  EVENT           38 , RUN            1
+ #impact parameter,nlop,ncolt=   12.8229675               0          32
+  IN HJANA1, GLUON          647
+  FLAV =           -2  PX =    7.28096580E-03  PY =   -8.68940912E-03
+  PZ =    419.168396      EE =    419.168396    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1796
+  FLAV =            1  PX =   -6.63392693E-02  PY =   -6.07832074E-02
+  PZ =    287.754822      EE =    287.754822    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          213  PART            2
+  FLAV =            2  PX =   -4.96342368E-02  PY =    7.66974762E-02
+  PZ =    602.440125      EE =    602.440125    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          780  PART            2
+  FLAV =            2  PX =   -9.86651257E-02  PY =   -1.41731892E-02
+  PZ =    358.820160      EE =    358.820160    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1229  PART            2
+  FLAV =            2  PX =   -7.00713471E-02  PY =    1.94409899E-02
+  PZ =   -275.562378      EE =    275.562378    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1449  PART            3
+  FLAV =            1  PX =    4.91940640E-02  PY =  -0.118597582    
+  PZ =   -771.576904      EE =    771.576904    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3037
+  FLAV =            2  PX =   -4.96342368E-02  PY =    7.66974762E-02
+  PZ =    602.440125      EE =    602.440125    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3048
+  FLAV =            2  PX =   -9.86651257E-02  PY =   -1.41731892E-02
+  PZ =    358.820160      EE =    358.820160    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3056
+  FLAV =            1  PX =    4.91940640E-02  PY =  -0.118597582    
+  PZ =   -771.576904      EE =    771.576904    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         3099
+  FLAV =            2  PX =   -7.00713471E-02  PY =    1.94409899E-02
+  PZ =   -275.562378      EE =    275.562378    
+  XM =    5.59999980E-03
+ 2  -2.5571218512603481E-003   7.1486137508185502E-005 -0.99999672984976395        1.0000000036926517                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574108.000            1842   12.8229675    
+  
+  EVENT           39 , RUN            1
+ #impact parameter,nlop,ncolt=   13.2197495               0          26
+  IN HJANA1, GLUON          369
+  FLAV =            2  PX =   -4.96342368E-02  PY =    7.66974762E-02
+  PZ =    602.440125      EE =    602.440125    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1416
+  FLAV =            2  PX =   -9.86651257E-02  PY =   -1.41731892E-02
+  PZ =    358.820160      EE =    358.820160    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2134
+  FLAV =            2  PX =   -7.00713471E-02  PY =    1.94409899E-02
+  PZ =   -275.562378      EE =    275.562378    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2481
+  FLAV =            2  PX =  -0.115468524      PY =   -3.66288163E-02
+  PZ =   -432.337585      EE =    432.337585    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2483
+  FLAV =            1  PX =    4.91940640E-02  PY =  -0.118597582    
+  PZ =   -771.576904      EE =    771.576904    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2985
+  FLAV =            2  PX =   -1.62902921E-02  PY =    2.75555979E-02
+  PZ =   -97.1551743      EE =    97.1551743    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          532  PART            3
+  FLAV =            1  PX =    2.80624796E-02  PY =  -0.142774805    
+  PZ =    1064.35022      EE =    1064.35022    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2143
+  FLAV =            1  PX =    2.80624796E-02  PY =  -0.142774805    
+  PZ =    1064.35022      EE =    1064.35022    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574134.125            1424   13.2197495    
+  
+  EVENT           40 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9452429               0          28
+  IN HJANA1, GLUON          861
+  FLAV =            1  PX =    2.80624796E-02  PY =  -0.142774805    
+  PZ =    1064.35022      EE =    1064.35022    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          460  PART            1
+  FLAV =            2  PX =    4.12719622E-02  PY =   -6.15432374E-02
+  PZ =    361.566895      EE =    361.566895    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          823  PART            2
+  FLAV =            2  PX =  -0.166059434      PY =    2.88514681E-02
+  PZ =    825.567261      EE =    825.567261    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3009
+  FLAV =            2  PX =    4.12719622E-02  PY =   -6.15432374E-02
+  PZ =    361.566895      EE =    361.566895    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3042
+  FLAV =            2  PX =  -0.166059434      PY =    2.88514681E-02
+  PZ =    825.567261      EE =    825.567261    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574093.125            1854   12.9452429    
+  
+  EVENT           41 , RUN            1
+ #impact parameter,nlop,ncolt=   12.8734751               0          28
+  IN HJANA1, GLUON          765
+  FLAV =            2  PX =    4.12719622E-02  PY =   -6.15432374E-02
+  PZ =    361.566895      EE =    361.566895    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1271
+  FLAV =            1  PX =   -9.88414362E-02  PY =   0.210152805    
+  PZ =    740.335083      EE =    740.335083    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          519  PART            2
+  FLAV =            2  PX =    6.44092634E-03  PY =   -5.24204336E-02
+  PZ =    193.179489      EE =    193.179489    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1624  PART            2
+  FLAV =           -2  PX =    8.66847765E-03  PY =    4.03275853E-03
+  PZ =   -76.5137482      EE =    76.5137482    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3125
+  FLAV =            2  PX =    6.44092634E-03  PY =   -5.24204336E-02
+  PZ =    193.179489      EE =    193.179489    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3223
+  FLAV =           -2  PX =    8.66847765E-03  PY =    4.03275853E-03
+  PZ =   -76.5137482      EE =    76.5137482    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574103.688            1917   12.8734751    
+  
+  EVENT           42 , RUN            1
+ #impact parameter,nlop,ncolt=   12.6329966               0          67
+  IN HJANA1, GLUON          905
+  FLAV =            2  PX =    6.44092634E-03  PY =   -5.24204336E-02
+  PZ =    193.179489      EE =    193.179489    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2826
+  FLAV =           -2  PX =    8.66847765E-03  PY =    4.03275853E-03
+  PZ =   -76.5137482      EE =    76.5137482    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2883
+  FLAV =            2  PX =    4.13485989E-02  PY =    4.60712314E-02
+  PZ =   -193.660339      EE =    193.660339    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          327  PART            1
+  FLAV =            2  PX =   -2.63033388E-03  PY =   -1.27611104E-02
+  PZ =    54.5866394      EE =    54.5866394    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          935  PART            2
+  FLAV =           -1  PX =   -1.00946194E-02  PY =   -5.98020619E-03
+  PZ =    201.529037      EE =    201.529037    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1581  PART            1
+  FLAV =            1  PX =    7.81484395E-02  PY =   -5.50243147E-02
+  PZ =    359.974731      EE =    359.974731    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1652  PART            3
+  FLAV =            1  PX =   -1.08305793E-02  PY =  -0.127293453    
+  PZ =    836.767944      EE =    836.767944    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1666  PART            3
+  FLAV =            1  PX =    9.83203053E-02  PY =  -0.120759092    
+  PZ =   -587.846863      EE =    587.846863    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         2243  PART            2
+  FLAV =            2  PX =   -7.27038607E-02  PY =    5.46305925E-02
+  PZ =   -541.440125      EE =    541.440125    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2445  PART            1
+  FLAV =            2  PX =    7.45337864E-04  PY =    4.22466025E-02
+  PZ =    167.878555      EE =    167.878555    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         6211
+  FLAV =           -1  PX =   -1.00946194E-02  PY =   -5.98020619E-03
+  PZ =    201.529037      EE =    201.529037    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         6247
+  FLAV =            1  PX =    9.83203053E-02  PY =  -0.120759092    
+  PZ =   -587.846863      EE =    587.846863    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         6253
+  FLAV =            1  PX =   -1.08305793E-02  PY =  -0.127293453    
+  PZ =    836.767944      EE =    836.767944    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         6278
+  FLAV =            1  PX =    7.81484395E-02  PY =   -5.50243147E-02
+  PZ =    359.974731      EE =    359.974731    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         6367
+  FLAV =            2  PX =   -2.63033388E-03  PY =   -1.27611104E-02
+  PZ =    54.5866394      EE =    54.5866394    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         6375
+  FLAV =            2  PX =    7.45337864E-04  PY =    4.22466025E-02
+  PZ =    167.878555      EE =    167.878555    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         6395
+  FLAV =            2  PX =   -7.27038607E-02  PY =    5.46305925E-02
+  PZ =   -541.440125      EE =    541.440125    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574140.438            3380   12.6329966    
+  
+  EVENT           43 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1320372               0          30
+  IN HJANA1, GLUON         1427
+  FLAV =            1  PX =   -6.66434988E-02  PY =    1.07761414E-03
+  PZ =    227.981323      EE =    227.981323    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         1477
+  FLAV =           -2  PX =  -0.176697433      PY =  -0.148354560    
+  PZ =    730.706543      EE =    730.706543    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1799
+  FLAV =           -1  PX =   -1.00946194E-02  PY =   -5.98020619E-03
+  PZ =    201.529037      EE =    201.529037    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2987
+  FLAV =            1  PX =    7.81484395E-02  PY =   -5.50243147E-02
+  PZ =    359.974731      EE =    359.974731    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3114
+  FLAV =            1  PX =   -1.08305793E-02  PY =  -0.127293453    
+  PZ =    836.767944      EE =    836.767944    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         3117
+  FLAV =            1  PX =    9.83203053E-02  PY =  -0.120759092    
+  PZ =   -587.846863      EE =    587.846863    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         4240
+  FLAV =            2  PX =   -7.27038607E-02  PY =    5.46305925E-02
+  PZ =   -541.440125      EE =    541.440125    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         4644
+  FLAV =            2  PX =    7.45337864E-04  PY =    4.22466025E-02
+  PZ =    167.878555      EE =    167.878555    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          377  PART            2
+  FLAV =            2  PX =   -9.93500426E-02  PY =    3.23050171E-02
+  PZ =    859.502380      EE =    859.502380    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          384  PART            2
+  FLAV =           -2  PX =    1.46712866E-02  PY =   -9.96154621E-02
+  PZ =    451.963715      EE =    451.963715    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          551  PART            3
+  FLAV =            1  PX =   -2.19879244E-02  PY =   0.272553712    
+  PZ =    1234.65906      EE =    1234.65906    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1505  PART            3
+  FLAV =            1  PX =   -8.15871581E-02  PY =    3.06640621E-02
+  PZ =   -1081.43860      EE =    1081.43860    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2320
+  FLAV =            1  PX =   -2.19879244E-02  PY =   0.272553712    
+  PZ =    1234.65906      EE =    1234.65906    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2394
+  FLAV =           -2  PX =    1.46712866E-02  PY =   -9.96154621E-02
+  PZ =    451.963715      EE =    451.963715    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2397
+  FLAV =            2  PX =   -9.93500426E-02  PY =    3.23050171E-02
+  PZ =    859.502380      EE =    859.502380    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2418
+  FLAV =            1  PX =   -8.15871581E-02  PY =    3.06640621E-02
+  PZ =   -1081.43860      EE =    1081.43860    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574092.250            1534   13.1320372    
+  
+  EVENT           44 , RUN            1
+ #impact parameter,nlop,ncolt=   12.4748955               0          47
+  IN HJANA1, GLUON          384
+  FLAV =            1  PX =  -0.149171665      PY =  -0.143014520    
+  PZ =    544.708923      EE =    544.708923    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON          644
+  FLAV =            2  PX =   -9.93500426E-02  PY =    3.23050171E-02
+  PZ =    859.502380      EE =    859.502380    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON          917
+  FLAV =            1  PX =   -2.19879244E-02  PY =   0.272553712    
+  PZ =    1234.65906      EE =    1234.65906    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2449
+  FLAV =            1  PX =   -8.15871581E-02  PY =    3.06640621E-02
+  PZ =   -1081.43860      EE =    1081.43860    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          180  PART            3
+  FLAV =            1  PX =   0.152969018      PY =   -9.09892097E-02
+  PZ =    915.491150      EE =    915.491150    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         1578  PART            1
+  FLAV =            2  PX =   -2.22233608E-02  PY =   -3.56193632E-02
+  PZ =   -141.707275      EE =    141.707275    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1644  PART            2
+  FLAV =            2  PX =   0.117730044      PY =    2.23260634E-02
+  PZ =   -1008.06171      EE =    1008.06171    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1809  PART            2
+  FLAV =           -2  PX =   0.151424363      PY =    5.99569641E-02
+  PZ =   -1017.59900      EE =    1017.59900    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3746
+  FLAV =           -2  PX =   0.151424363      PY =    5.99569641E-02
+  PZ =   -1017.59900      EE =    1017.59900    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3785
+  FLAV =            2  PX =   0.117730044      PY =    2.23260634E-02
+  PZ =   -1008.06171      EE =    1008.06171    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3801
+  FLAV =            2  PX =   -2.22233608E-02  PY =   -3.56193632E-02
+  PZ =   -141.707275      EE =    141.707275    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         3847
+  FLAV =            1  PX =   0.152969018      PY =   -9.09892097E-02
+  PZ =    915.491150      EE =    915.491150    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574104.562            2189   12.4748955    
+  
+ IN HJANA4
+  PARTICLE          878  RUN            1 PREC ERR
+  FLAV =         -211  PX =  -0.155691117      PY =   0.200277567    
+  PZ =   -844.931519      EE =    844.931519    
+  XM =   0.139599994    
+ IN HJANA4
+  PARTICLE         3066  RUN            1 PREC ERR
+  FLAV =          211  PX =   -6.07265830E-02  PY =  -0.227042213    
+  PZ =   -731.752625      EE =    731.752625    
+  XM =   0.139599994    
+ IN ARTAN2
+ PARTICLE          878  RUN            1 PREC ERR
+  FLAV =         -211  PX =  -0.155691117      PY =   0.200277567    
+  PZ =   -844.931519      EE =    844.931519    
+  XM =   0.139599994    
+ IN ARTAN2
+ PARTICLE         3066  RUN            1 PREC ERR
+  FLAV =          211  PX =   -6.07265830E-02  PY =  -0.227042213    
+  PZ =   -731.752625      EE =    731.752625    
+  XM =   0.139599994    
+  EVENT           45 , RUN            1
+ #impact parameter,nlop,ncolt=   12.9910164               0          14
+  IN HJANA1, GLUON          311
+  FLAV =            1  PX =   0.152969018      PY =   -9.09892097E-02
+  PZ =    915.491150      EE =    915.491150    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2891
+  FLAV =            2  PX =   0.117730044      PY =    2.23260634E-02
+  PZ =   -1008.06171      EE =    1008.06171    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3166
+  FLAV =           -2  PX =   0.151424363      PY =    5.99569641E-02
+  PZ =   -1017.59900      EE =    1017.59900    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3228
+  FLAV =           -1  PX =   -1.61533076E-02  PY =    9.70069170E-02
+  PZ =   -279.783813      EE =    279.783813    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          826  PART            3
+  FLAV =            1  PX =  -0.101918884      PY =   -5.18156099E-04
+  PZ =   -895.902649      EE =    895.902649    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         1846
+  FLAV =            1  PX =  -0.101918884      PY =   -5.18156099E-04
+  PZ =   -895.902649      EE =    895.902649    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574095.875            1278   12.9910164    
+  
+  EVENT           46 , RUN            1
+ #impact parameter,nlop,ncolt=   12.4094963               0          83
+  IN HJANA1, GLUON         1273
+  FLAV =            1  PX =  -0.101918884      PY =   -5.18156099E-04
+  PZ =   -895.902649      EE =    895.902649    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR         2757  PART            3
+  FLAV =            1  PX =   0.120344684      PY =   0.160192117    
+  PZ =   -1248.67505      EE =    1248.67505    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5891
+  FLAV =            1  PX =   0.120344684      PY =   0.160192117    
+  PZ =   -1248.67505      EE =    1248.67505    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574152.375            3183   12.4094963    
+  
+  EVENT           47 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7350807               0          67
+  IN HJANA1, GLUON         1134
+  FLAV =            2  PX =   0.185474008      PY =  -0.129298046    
+  PZ =    665.736633      EE =    665.736633    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         5198
+  FLAV =            1  PX =   0.120344684      PY =   0.160192117    
+  PZ =   -1248.67505      EE =    1248.67505    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          128  PART            3
+  FLAV =            2  PX =   -4.10008244E-02  PY =    2.11326755E-04
+  PZ =    219.995056      EE =    219.995056    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1055  PART            2
+  FLAV =            2  PX =    4.08010334E-02  PY =   0.183721796    
+  PZ =    883.318848      EE =    883.318848    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1549  PART            2
+  FLAV =           -2  PX =   -2.41280440E-02  PY =   -6.73717493E-03
+  PZ =   -93.5899582      EE =    93.5899582    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1634  PART            3
+  FLAV =            2  PX =    6.76527619E-02  PY =    7.19203725E-02
+  PZ =   -953.939758      EE =    953.939758    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2075  PART            3
+  FLAV =            1  PX =    5.90801239E-02  PY =    1.02001727E-02
+  PZ =   -309.809937      EE =    309.809937    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4536
+  FLAV =           -2  PX =   -2.41280440E-02  PY =   -6.73717493E-03
+  PZ =   -93.5899582      EE =    93.5899582    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4688
+  FLAV =            2  PX =    4.08010334E-02  PY =   0.183721796    
+  PZ =    883.318848      EE =    883.318848    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4702
+  FLAV =            1  PX =    5.90801239E-02  PY =    1.02001727E-02
+  PZ =   -309.809937      EE =    309.809937    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         4762
+  FLAV =            2  PX =   -4.10008244E-02  PY =    2.11326755E-04
+  PZ =    219.995056      EE =    219.995056    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         4787
+  FLAV =            2  PX =    6.76527619E-02  PY =    7.19203725E-02
+  PZ =   -953.939758      EE =    953.939758    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574138.875            2683   12.7350807    
+  
+  EVENT           48 , RUN            1
+ #impact parameter,nlop,ncolt=   12.7891731               0          29
+  IN HJANA1, GLUON          199
+  FLAV =            2  PX =   -4.10008244E-02  PY =    2.11326755E-04
+  PZ =    219.995056      EE =    219.995056    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         1926
+  FLAV =            2  PX =    4.08010334E-02  PY =   0.183721796    
+  PZ =    883.318848      EE =    883.318848    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2974
+  FLAV =            1  PX =   0.117766961      PY =    4.88959700E-02
+  PZ =   -397.636963      EE =    397.636963    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         2976
+  FLAV =            2  PX =    6.76527619E-02  PY =    7.19203725E-02
+  PZ =   -953.939758      EE =    953.939758    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         3143
+  FLAV =            2  PX =   0.170176029      PY =  -0.130137533    
+  PZ =   -583.487000      EE =    583.487000    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR          946  PART            1
+  FLAV =            2  PX =    1.01618823E-02  PY =   -9.31005343E-06
+  PZ =   -44.9982185      EE =    44.9982185    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1299  PART            2
+  FLAV =            2  PX =   -4.23707105E-02  PY =    6.42576367E-02
+  PZ =   -273.746002      EE =    273.746002    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2550
+  FLAV =            2  PX =    1.01618823E-02  PY =   -9.31005343E-06
+  PZ =   -44.9982185      EE =    44.9982185    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         2619
+  FLAV =            2  PX =   -4.23707105E-02  PY =    6.42576367E-02
+  PZ =   -273.746002      EE =    273.746002    
+  XM =    5.59999980E-03
+ satisfied:EATT,NATT,B=   574117.938            1618   12.7891731    
+  
+  EVENT           49 , RUN            1
+ #impact parameter,nlop,ncolt=   13.1570673               0          53
+  IN HJANA1, GLUON         1455
+  FLAV =            2  PX =    1.01618823E-02  PY =   -9.31005343E-06
+  PZ =   -44.9982185      EE =    44.9982185    
+  XM =    5.59999980E-03
+  IN HJANA1, GLUON         2152
+  FLAV =            2  PX =   -4.23707105E-02  PY =    6.42576367E-02
+  PZ =   -273.746002      EE =    273.746002    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         1343  PART            1
+  FLAV =            2  PX =    8.40388685E-02  PY =    3.96126248E-02
+  PZ =    327.237732      EE =    327.237732    
+  XM =    5.59999980E-03
+  IN HJANA2, INDP STR         2480  PART            2
+  FLAV =           -1  PX =    1.08763538E-02  PY =   -2.47842679E-03
+  PZ =   -84.1607513      EE =    84.1607513    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         5219
+  FLAV =            2  PX =    8.40388685E-02  PY =    3.96126248E-02
+  PZ =    327.237732      EE =    327.237732    
+  XM =    5.59999980E-03
+  IN HJANA2, GLUON         5245
+  FLAV =           -1  PX =    1.08763538E-02  PY =   -2.47842679E-03
+  PZ =   -84.1607513      EE =    84.1607513    
+  XM =    9.89999995E-03
+ satisfied:EATT,NATT,B=   574147.688            2861   13.1570673    
+  
+  EVENT           50 , RUN            1
+ #impact parameter,nlop,ncolt=   12.3651009               0          30
+  IN HJANA1, GLUON          553
+  FLAV =            1  PX =   -6.20326549E-02  PY =   -8.88722241E-02
+  PZ =    326.850006      EE =    326.850006    
+  XM =    9.89999995E-03
+  IN HJANA1, GLUON         4605
+  FLAV =           -1  PX =    1.08763538E-02  PY =   -2.47842679E-03
+  PZ =   -84.1607513      EE =    84.1607513    
+  XM =    9.89999995E-03
+  in HJANA1 
+  total number of partons =          264
+  total number of gluons =            4
+  number of projectile strings =          208
+  number of target strings =          208
+  number of independent strings =            4
+  IN HJANA2, INDP STR          117  PART            1
+  FLAV =            1  PX =   -4.07388583E-02  PY =    3.32328454E-02
+  PZ =    272.090759      EE =    272.090759    
+  XM =    9.89999995E-03
+  IN HJANA2, INDP STR          422  PART            1
+  FLAV =            1  PX =   -8.54454115E-02  PY =   0.100646578    
+  PZ =    624.060303      EE =    624.060303    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2851
+  FLAV =            1  PX =   -4.07388583E-02  PY =    3.32328454E-02
+  PZ =    272.090759      EE =    272.090759    
+  XM =    9.89999995E-03
+  IN HJANA2, GLUON         2864
+  FLAV =            1  PX =   -8.54454115E-02  PY =   0.100646578    
+  PZ =    624.060303      EE =    624.060303    
+  XM =    9.89999995E-03
+  in HJANA2 
+  total number of partons =         3279
+  total number of gluons =            0
+  number of projectile strings =          208
+  number of target strings =          208
+  number of independent strings =         1923
+ 2  -6.4805594097602857E-004   6.9967519479020065E-004 -0.99999956909277388        1.0000000477076143                            NaN
+ beta2=0.999999999999999
+ satisfied:EATT,NATT,B=   574090.688            1767   12.3651009    
+  
+gpu1.iopp
+#  AMPT started at  2018年 11月 28日 星期三 14:52:54 CST
+#  AMPT Program finished at  2018年 11月 28日 星期三 14:54:08 CST
